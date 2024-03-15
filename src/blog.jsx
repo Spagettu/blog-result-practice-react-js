@@ -3,9 +3,7 @@ import { useState } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
-import { StyledHeader } from "./components";
-
-const Footer = () => "Footer";
+import { Footer, StyledHeader } from "./components";
 
 const Content = styled.div({
   padding: "120px 0",
