@@ -15,5 +15,8 @@ body{background-color: rgb(57, 63, 81);}
 
 a{
   text-decoration: none;
+display: flex;
+justify-content: center;
+align-items: center;
 
 }

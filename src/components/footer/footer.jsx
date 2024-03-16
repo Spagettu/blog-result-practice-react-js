@@ -31,7 +31,7 @@ export const Footer = () => {
           City;
           {new Date().toLocaleString("ru", { day: "numeric", month: "long" })}
         </div>
-        <div>temp грудусов, weather</div>
+        <div>temp градусов, weather</div>
       </div>
     </FooterDiv>
   );

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { usersUrl } from "./bff";
+import { usersUrl } from "./server";
 import { genearateDate } from "./generate-date";
 
 export const createUser = async (regLogin, regPassword) => {

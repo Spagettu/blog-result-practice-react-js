@@ -1,6 +1,7 @@
 import { getUser } from "./get-user";
 import { createUser } from "./create-user";
-import { createSession } from "./create-session";
+import { addSession } from "./create-session";
+import { sessions } from "./sessions";
 
 export const usersUrl = "http://localhost:3005/users";
 
@@ -11,19 +12,27 @@ export const server = {
     if (!user) {
       return {
         res: null,
-        error: "Пользователь не найден",
+        error: " Пользователь не найден",
       };
     }
 
     if (authPassword != user.password) {
       return {
         res: null,
-        error: "Неверный пароль",
+        error: " Неверный пароль",
       };
     }
 
+    const session = sessions.create();
+    sessions.create(session);
+
     return {
-      res: createSession(user.role_id),
+      res: {
+        id: user.id,
+        login: user.login,
+        roleId: user.role_id,
+        session,
+      },
       error: null,
     };
   },
@@ -41,8 +50,11 @@ export const server = {
     }
 
     return {
-      res: createSession(user.role_id),
+      res: addSession(user.role_id),
       error: null,
     };
+  },
+  async logout(session) {
+    sessions.remove(session);
   },
 };

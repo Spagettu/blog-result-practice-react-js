@@ -2,39 +2,70 @@
 import styled from "styled-components";
 import { Icon } from "./icon/icon";
 import { Link, useNavigate } from "react-router-dom";
+import { Button } from "../../button/button";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUserLogin, selectUserRole } from "../../../selectors";
+import { ROLE } from "../../../constant";
+import { ACTION_TYPE, selectUserSession, logout } from "../../../actions";
 
 const RigthAligned = styled.div({
   display: "flex",
-  justifyContent: "flex-end",
+  justifyContent: "center",
+  alignItems: "center",
+  height: "32px",
 });
-const StyledLink = styled(Link)`
-  fontsize: 18px;
-  width: 100px;
-  height: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid black;
-  background-color: #eee;
-`;
 
-const BackDiv = styled.div({
+const StyledIcon = styled.div({
   "&:hover": {
     cursor: "pointer",
   },
+  paddingTop: "2px",
 });
+
+const UserName = styled.div({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  fontSize: "18px",
+  fontWeight: "bold",
+  marginRight: "5px",
+});
+
+// const AuthContainer = styled.div({
+//   display: "flex",
+//   justifyContent: "center",
+//   alignItems: "center",
+//   width: "100%",
+// });
 
 const ControlPanelContainer = ({ className }) => {
   const navigate = useNavigate();
+  const roleId = useSelector(selectUserRole);
+  const login = useSelector(selectUserLogin);
+  const session = useSelector(selectUserSession);
+  const dispatch = useDispatch();
+
   return (
     <div className={className}>
+      {roleId === ROLE.GUEST ? (
+        <RigthAligned>
+          <Button>
+            <Link to="/login">Войти</Link>
+          </Button>
+        </RigthAligned>
+      ) : (
+        <RigthAligned>
+          <UserName>{login}</UserName>
+          <StyledIcon onClick={() => dispatch(logout(session))}>
+            <Icon id="fa-sign-in" />
+          </StyledIcon>
+        </RigthAligned>
+      )}
+
       <RigthAligned>
-        <StyledLink to="/login">Войти</StyledLink>
-      </RigthAligned>
-      <RigthAligned>
-        <BackDiv onClick={() => navigate(-1)}>
+        <StyledIcon onClick={() => navigate(-1)}>
           <Icon id="fa-backward" margin="10px 0 0 0" />
-        </BackDiv>
+        </StyledIcon>
         <Link to="/post">
           <Icon id="fa-file-text-o" margin="10px 0 0 18px" />
         </Link>

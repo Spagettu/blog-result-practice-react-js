@@ -4,15 +4,17 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import { Footer, StyledHeader } from "./components";
+import { Authorization } from "./pages";
 
 const Content = styled.div({
-  padding: "120px 0",
+  paddingTop: "30px",
+  marginTop: "100px",
 });
 
 const AppColumn = styled.div({
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
+  // display: "flex",
+  // flexDirection: "column",
+  // justifyContent: "center",
   width: "1000px",
   minHeight: "100%",
   margin: "0 auto",
@@ -26,7 +28,7 @@ function Blog() {
       <Content>
         <Routes>
           <Route path="/" element={<div>Главная</div>} />
-          <Route path="/login" element={<div>login</div>} />
+          <Route path="/login" element={<Authorization />} />
           <Route path="/register" element={<div>Register</div>} />
           <Route path="/users" element={<div>Users</div>} />
           <Route path="/post/:postId" element={<div>Post</div>} />

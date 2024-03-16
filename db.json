@@ -1,6 +1,6 @@
 {
     "users":[
-        {"id":0,"role_id":0,"login":"admin","password":"admin","registered_at":""}
+        {"id":0,"role_id":0,"login":"admin","password":"admin1","registered_at":""}
     ],
     "roles":[
         {"id":0,

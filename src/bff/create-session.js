@@ -4,7 +4,7 @@ const removeComment = () => {
   console.log("a");
 };
 
-export const createSession = (roleId) => {
+export const addSession = (roleId) => {
   const session = {
     logout() {
       Object.keys(session).forEach((key) => delete session[key]);
