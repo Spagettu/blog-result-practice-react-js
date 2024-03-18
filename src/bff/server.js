@@ -40,17 +40,21 @@ export const server = {
   async register(regLogin, regPassword) {
     const user = await getUser(regLogin);
 
-    await createUser(regLogin, regPassword);
-
     if (user) {
       return {
         res: null,
         error: "Такой логин уже существует",
       };
     }
+    const createdUser = await createUser(regLogin, regPassword);
 
     return {
-      res: addSession(user.role_id),
+      res: {
+        id: createdUser.id,
+        login: createdUser.login,
+        roleId: createdUser.role_id,
+        session: sessions.create(createdUser),
+      },
       error: null,
     };
   },

@@ -6,7 +6,7 @@ import { Button } from "../../button/button";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserLogin, selectUserRole } from "../../../selectors";
 import { ROLE } from "../../../constant";
-import { ACTION_TYPE, selectUserSession, logout } from "../../../actions";
+import { selectUserSession, logout } from "../../../actions";
 
 const RigthAligned = styled.div({
   display: "flex",
@@ -30,13 +30,6 @@ const UserName = styled.div({
   fontWeight: "bold",
   marginRight: "5px",
 });
-
-// const AuthContainer = styled.div({
-//   display: "flex",
-//   justifyContent: "center",
-//   alignItems: "center",
-//   width: "100%",
-// });
 
 const ControlPanelContainer = ({ className }) => {
   const navigate = useNavigate();

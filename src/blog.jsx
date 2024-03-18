@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import React from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import { Footer, StyledHeader } from "./components";
-import { Authorization } from "./pages";
+import { Authorization, Registration } from "./pages";
 
 const Content = styled.div({
   paddingTop: "30px",
@@ -12,9 +12,6 @@ const Content = styled.div({
 });
 
 const AppColumn = styled.div({
-  // display: "flex",
-  // flexDirection: "column",
-  // justifyContent: "center",
   width: "1000px",
   minHeight: "100%",
   margin: "0 auto",
@@ -29,7 +26,7 @@ function Blog() {
         <Routes>
           <Route path="/" element={<div>Главная</div>} />
           <Route path="/login" element={<Authorization />} />
-          <Route path="/register" element={<div>Register</div>} />
+          <Route path="/register" element={<Registration />} />
           <Route path="/users" element={<div>Users</div>} />
           <Route path="/post/:postId" element={<div>Post</div>} />
           <Route path="/post" element={<div>New Post</div>} />

@@ -2,11 +2,12 @@ import axios from "axios";
 import { usersUrl } from "./server";
 import { genearateDate } from "./generate-date";
 
-export const createUser = async (regLogin, regPassword) => {
-  await axios.post(usersUrl, {
-    login: regLogin,
-    passwordL: regPassword,
-    role_id: 2,
-    registered_at: genearateDate(),
-  });
-};
+export const createUser = (regLogin, regPassword) =>
+  axios
+    .post(usersUrl, {
+      login: regLogin,
+      password: regPassword,
+      role_id: 2,
+      registered_at: genearateDate(),
+    })
+    .then((response) => response.data);

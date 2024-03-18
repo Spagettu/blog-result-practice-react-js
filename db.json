@@ -1,24 +1,41 @@
 {
-    "users":[
-        {"id":0,"role_id":0,"login":"admin","password":"admin1","registered_at":""}
-    ],
-    "roles":[
-        {"id":0,
-    "name":"admin"},{"id":1,
-    "name":"moder"},
-    {"id":2,
-    "name":"reader"},
-    {"id":3,
-    "name":"guest"}
-    ],
-    "posts":[
-        {"id":"001",
-    "title":"пост 1",
-"image_url":"",
-"content":"",
-"published_at":""}
-    ],
-    "comments":[
-        {}
-    ]
+  "users": [
+    {
+      "id": 0,
+      "role_id": 0,
+      "login": "admin",
+      "password": "admin1",
+      "registered_at": ""
+    }
+  ],
+  "roles": [
+    {
+      "id": 0,
+      "name": "admin"
+    },
+    {
+      "id": 1,
+      "name": "moder"
+    },
+    {
+      "id": 2,
+      "name": "reader"
+    },
+    {
+      "id": 3,
+      "name": "guest"
+    }
+  ],
+  "posts": [
+    {
+      "id": "001",
+      "title": "пост 1",
+      "image_url": "",
+      "content": "",
+      "published_at": ""
+    }
+  ],
+  "comments": [
+    {}
+  ]
 }

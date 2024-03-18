@@ -12,7 +12,7 @@ import { selectUserRole } from "../../selectors";
 import { ROLE } from "../../constant";
 import { useResetForm } from "../../hooks";
 
-const autFormSchema = yup.object().shape({
+const regFormSchema = yup.object().shape({
   login: yup
     .string()
     .required("Заполните логин")
@@ -25,17 +25,21 @@ const autFormSchema = yup.object().shape({
     .matches(/^[\w#%]+$/, "Пароль может состоять только из букв, цифр, #, %")
     .min(6, "Длина пароля должна быть более 6 символов")
     .max(30, "Длина пароля должна быть менее 30 символов"),
+  pastcheck: yup
+    .string()
+    .required("Заполните повтор пароля")
+    .oneOf([yup.ref("password"), null], "Пароли не совпадают"),
 });
 
-export const Authorization = () => {
+export const Registration = () => {
   const {
     reset,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: { login: "", password: "" },
-    resolver: yupResolver(autFormSchema),
+    defaultValues: { login: "", password: "", pastcheck: "" },
+    resolver: yupResolver(regFormSchema),
   });
 
   const [serverError, setServerError] = useState("");
@@ -45,7 +49,7 @@ export const Authorization = () => {
   useResetForm(reset);
 
   const onSubmit = ({ login, password }) => {
-    server.authorize(login, password).then(({ res, error }) => {
+    server.register(login, password).then(({ res, error }) => {
       if (error) {
         setServerError("Ошибка запроса:" + error);
         return;
@@ -53,7 +57,10 @@ export const Authorization = () => {
       dispatch(setUser(res));
     });
   };
-  const formError = errors?.login?.message || errors?.password?.message;
+  const formError =
+    errors?.login?.message ||
+    errors?.password?.message ||
+    errors?.pastcheck?.message;
   const errorMessage = formError || serverError;
 
   if (roleId !== ROLE.GUEST) {
@@ -62,7 +69,7 @@ export const Authorization = () => {
 
   return (
     <AuthContainer>
-      <H2>Авторизация</H2>
+      <H2>Регистрация</H2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input
           type="text"
@@ -76,12 +83,16 @@ export const Authorization = () => {
           placeholder="Пароль"
           {...register("password", { onChange: () => setServerError("") })}
         />
+        <Input
+          type="password"
+          placeholder="Повтор пароля"
+          {...register("pastcheck", { onChange: () => setServerError("") })}
+        />
+
         <Button type="submit" disabled={!!formError}>
-          Авторизироваться
+          Зарегистироваться
         </Button>
         {errorMessage && <AuthRegFormError>{errorMessage}</AuthRegFormError>}
-
-        <StyledLink to="/register">Регистрация</StyledLink>
       </form>
     </AuthContainer>
   );
@@ -97,11 +108,4 @@ const AuthContainer = styled.div({
     flexDirection: "column",
     width: "260px",
   },
-});
-
-const StyledLink = styled(Link)({
-  textAlign: "center",
-  textDecoration: "underline",
-  margin: "20px 0",
-  fontSize: "18px",
 });
