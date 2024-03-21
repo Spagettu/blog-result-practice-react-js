@@ -1,6 +1,8 @@
 import axios from "axios";
-import { usersUrl } from "./server";
-import { genearateDate } from "./generate-date";
+
+import { genearateDate } from "../utils/generate-date";
+
+const usersUrl = "http://localhost:3005/users";
 
 export const createUser = (regLogin, regPassword) =>
   axios

@@ -6,6 +6,27 @@
       "login": "admin",
       "password": "admin1",
       "registered_at": ""
+    },
+    {
+      "id": 1,
+      "role_id": 0,
+      "login": "admin1",
+      "password": "admin1",
+      "registered_at": ""
+    },
+    {
+      "id": 2,
+      "role_id": 0,
+      "login": "admin2",
+      "password": "admin1",
+      "registered_at": ""
+    },
+    {
+      "id": 3,
+      "role_id": 0,
+      "login": "admin3",
+      "password": "admin1",
+      "registered_at": ""
     }
   ],
   "roles": [
