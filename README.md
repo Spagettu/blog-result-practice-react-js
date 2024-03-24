@@ -25,6 +25,6 @@
 схема для redux store
 
 - user: id / login
-- posts: массив post: id /title / imageUrl / publishedAt / commentCount
+- posts: массив post: id /title / imageUrl / publishedAt / comments
 - post : id / title/ imageUrl / pbulishedAt / comments:массив comment: id / authr /content /publishedAt
 - users: массив user: id / login / registeredAt / role

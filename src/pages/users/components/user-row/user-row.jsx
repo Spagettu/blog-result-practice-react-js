@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import { Icon } from "../../../../components/header/components";
 import styled from "styled-components";
 
@@ -16,7 +15,7 @@ export const UserRow = ({
 }) => {
   const [selectedtRoleId, setSelectedRoleId] = useState(userRoleId);
   const [initialRoleId, setInitialRoleid] = useState(userRoleId);
-  const dispatch = useDispatch();
+
   const requestServer = useServerRequest();
   const onRoleChange = ({ target }) => {
     setSelectedRoleId(Number(target.value));

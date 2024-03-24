@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import { Footer, StyledHeader } from "./components";
-import { Authorization, Registration, Users } from "./pages";
+import { Authorization, Post, Registration, Users } from "./pages";
 import { server } from "./bff";
 import { useDispatch } from "react-redux";
 import { setUser } from "./actions";
@@ -24,14 +24,17 @@ const AppColumn = styled.div({
 function Blog() {
   const dispath = useDispatch();
 
-  useEffect(() => {
-    server.authorize("admin", "admin1").then(({ res, error }) => {
-      if (error) {
-        console.log(error);
-        return;
-      }
-      dispath(setUser(res));
-    });
+  useLayoutEffect(() => {
+    const user = JSON.parse(sessionStorage.getItem("userData"));
+    if (user) {
+      server.authorize(user.login, user.password).then(({ res, error }) => {
+        if (error) {
+          console.log(error);
+          return;
+        }
+        dispath(setUser(res));
+      });
+    } else return;
   }, []);
 
   return (
@@ -43,7 +46,7 @@ function Blog() {
           <Route path="/login" element={<Authorization />} />
           <Route path="/register" element={<Registration />} />
           <Route path="/users" element={<Users />} />
-          <Route path="/post/:postId" element={<div>Post</div>} />
+          <Route path="/post/:postId" element={<Post />} />
           <Route path="/post" element={<div>New Post</div>} />
           <Route path="*" element={<div>Error</div>} />
         </Routes>

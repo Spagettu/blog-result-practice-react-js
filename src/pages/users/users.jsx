@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import { Content, H2 } from "../../components";
-import { Icon } from "../../components/header/components/icon/icon";
-import { useDispatch } from "react-redux";
 import { useServerRequest } from "../../hooks";
 import { useEffect, useState } from "react";
 import { TableRow, UserRow } from "./components";

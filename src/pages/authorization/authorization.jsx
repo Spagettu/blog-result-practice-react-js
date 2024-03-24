@@ -50,6 +50,7 @@ export const Authorization = () => {
         setServerError("Ошибка запроса:" + error);
         return;
       }
+      sessionStorage.setItem("userData", JSON.stringify({ login, password }));
       dispatch(setUser(res));
     });
   };
