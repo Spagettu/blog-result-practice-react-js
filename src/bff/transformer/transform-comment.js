@@ -5,5 +5,6 @@ export const transformComment = (dbComment) => {
     publishedAt: dbComment.published_at,
     postId: dbComment.post_id,
     content: dbComment.content,
+    id: dbComment.id,
   };
 };

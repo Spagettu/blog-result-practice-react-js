@@ -7,3 +7,5 @@ export * from "./delete-user";
 export * from "./get-post";
 export * from "./create-comment";
 export * from "./get-comments";
+export * from "./delete-comment";
+export * from "./update-post";

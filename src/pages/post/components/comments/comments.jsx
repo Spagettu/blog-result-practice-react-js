@@ -4,14 +4,9 @@ import styled from "styled-components";
 import { Comment } from "./components";
 import { Icon } from "../../../../components/header/components";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  selectUserId,
-  selectUserLogin,
-  selectUserRole,
-} from "../../../../selectors";
+import { selectUserId, selectUserLogin } from "../../../../selectors";
 import { useServerRequest } from "../../../../hooks";
 import { addCommentAsync } from "../../../../actions";
-import { ROLE } from "../../../../constant";
 
 export const Comments = ({ comments, postId }) => {
   const [newComment, setNewComment] = useState("");
@@ -35,6 +30,7 @@ export const Comments = ({ comments, postId }) => {
     } else return;
   };
 
+  console.log(comments);
   return (
     <CommentsContainer>
       <div className="new-comment">
@@ -54,7 +50,7 @@ export const Comments = ({ comments, postId }) => {
 
       <div className="comments">
         {comments.map(({ id, author, content, publishedAt }) => (
-          <Comment key={id} {...{ id, author, content, publishedAt }} />
+          <Comment key={id} {...{ id, postId, author, content, publishedAt }} />
         ))}
       </div>
     </CommentsContainer>

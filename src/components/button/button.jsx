@@ -1,10 +1,8 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
 
-export const Button = ({ children, props, disabled, width }) => {
-  return (
-    <StyledButton {...{ props, width, disabled }}>{children}</StyledButton>
-  );
+export const Button = ({ children, ...props }) => {
+  return <StyledButton {...{ ...props }}>{children}</StyledButton>;
 };
 
 const StyledButton = styled.button({

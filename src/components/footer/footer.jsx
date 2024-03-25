@@ -3,9 +3,7 @@ import styled from "styled-components";
 
 const FooterDiv = styled.div({
   display: "flex",
-  position: "fixed",
-  bottom: "0px",
-  marginTop: "40px",
+  position: "relative",
   justifyContent: "space-between",
   alignContent: "center",
   height: "120px",
