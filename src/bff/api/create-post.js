@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { genearateDate } from "../utils/generate-date";
+import { genearateDate } from "../utils";
 
 const url = "http://localhost:3005/posts";
 

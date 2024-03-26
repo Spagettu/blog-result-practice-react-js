@@ -1,6 +1,5 @@
 import axios from "axios";
-
-import { genearateDate } from "../utils/generate-date";
+import { genearateDate } from "../utils";
 
 const commentsUrl = "http://localhost:3005/comments";
 
