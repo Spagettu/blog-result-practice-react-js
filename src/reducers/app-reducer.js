@@ -27,7 +27,8 @@ export const appReducer = (state = initialAppState, action) => {
       };
     case ACTION_TYPE.CLOSE_MODAL:
       return initialAppState;
-
+    case ACTION_TYPE.RESET_POST_DATA:
+      return initialAppState;
     default:
       return state;
   }

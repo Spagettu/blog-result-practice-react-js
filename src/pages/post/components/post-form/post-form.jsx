@@ -3,26 +3,30 @@ import styled from "styled-components";
 import { H2, Input } from "../../../../components";
 import { Icon } from "../../../../components/header/components";
 import { SpecialPanel } from "../special-panel/special-panel";
-import { useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { sanitizeContent } from "./utils/sanitize-content";
 import { useDispatch } from "react-redux";
-import { savePostAsync } from "../../../../actions";
+import { RESET_POST_DATA, savePostAsync } from "../../../../actions";
 import { useServerRequest } from "../../../../hooks";
 import { useNavigate } from "react-router-dom";
 
 export const PostForm = ({
   post: { id, title, imageUrl, content, publishedAt },
 }) => {
-  const imageRef = useRef(null);
-  const titleRef = useRef(null);
-  const contentRef = useRef(null);
+  const [newImageUrl, setNewImageUrl] = useState(imageUrl);
+  const [newTitle, setNewTitle] = useState(title);
+  const contentRef = useRef("");
   const dispatch = useDispatch();
   const requestServer = useServerRequest();
   const navigate = useNavigate();
 
+  useLayoutEffect(() => {
+    console.log("uselayout");
+    setNewImageUrl(imageUrl);
+    setNewTitle(title);
+  }, [imageUrl, title]);
+
   const onSave = () => {
-    const newImageUrl = imageRef.current.value;
-    const newTitle = titleRef.current.value;
     const newContent = sanitizeContent(contentRef.current.innerHTML);
 
     dispatch(
@@ -32,15 +36,29 @@ export const PostForm = ({
         title: newTitle,
         content: newContent,
       })
-    );
+    ).then(() => navigate("/post/" + id));
   };
+
+  const onImageUrlChange = ({ target }) => setNewImageUrl(target.value);
+  const onTitleChange = ({ target }) => setNewTitle(target.value);
+
   return (
     <PostFormContainer>
-      <Input ref={imageRef} type="text" defaultValue={imageUrl} />
-      <Input ref={titleRef} type="text" defaultValue={title} />
+      <Input
+        value={newImageUrl}
+        onChange={onImageUrlChange}
+        type="text"
+        placeholder={"Ссылка на фото..."}
+      />
+      <Input
+        value={newTitle}
+        onChange={onTitleChange}
+        type="text"
+        placeholder={"Загаловок..."}
+      />
       <SpecialPanel
         margin={"-20px 0 20px"}
-        {...{ publishedAt }}
+        {...{ publishedAt, id }}
         editButton={<Icon id="fa-floppy-o" margin="0 10px" onClick={onSave} />}
       />
       <div
@@ -62,5 +80,7 @@ const PostFormContainer = styled.div({
 
   "& .post-text": {
     whiteSpace: "pre-line",
+    border: "1px solid black",
+    minHeight: "80px",
   },
 });

@@ -9,3 +9,5 @@ export * from "./create-comment";
 export * from "./get-comments";
 export * from "./delete-comment";
 export * from "./update-post";
+export * from "./delete-post";
+export * from "./create-post";

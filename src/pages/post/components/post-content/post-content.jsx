@@ -15,7 +15,7 @@ export const PostContent = ({
       <H2>{title}</H2>
       <SpecialPanel
         margin="20px 0"
-        {...{ publishedAt }}
+        {...{ publishedAt, id }}
         editButton={
           <Icon
             id="fa-pencil-square-o"

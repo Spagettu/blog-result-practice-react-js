@@ -32,12 +32,22 @@ export const Comment = ({ id, author, postId, content, publishedAt }) => {
       <div className="comment-container">
         <div className="information-panel">
           <div className="author">
-            <Icon id="fa-user-circle-o" margin="0 10px 0 0" size="18px" />
+            <Icon
+              id="fa-user-circle-o"
+              margin="0 10px 0 0"
+              size="18px"
+              inactive={true}
+            />
             {author}
           </div>
 
           <div className="published-at">
-            <Icon id="fa-calendar-o" margin="0 0 0 10px" size="18px" />
+            <Icon
+              id="fa-calendar-o"
+              margin="0 0 0 10px"
+              size="18px"
+              inactive={true}
+            />
             {publishedAt}
           </div>
         </div>
