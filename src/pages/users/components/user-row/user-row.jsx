@@ -22,7 +22,6 @@ export const UserRow = ({
   };
 
   const onRoleSave = (userId, newUserRoleId) => {
-    console.log("da");
     requestServer("updateUserRole", userId, newUserRoleId).then(() =>
       setInitialRoleid(newUserRoleId)
     );

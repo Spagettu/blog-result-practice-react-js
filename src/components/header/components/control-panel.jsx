@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUserLogin, selectUserRole } from "../../../selectors";
 import { ROLE } from "../../../constant";
 import { selectUserSession, logout } from "../../../actions";
+import { checkAccess } from "../../../utils";
 
 const RigthAligned = styled.div({
   display: "flex",
@@ -36,6 +37,8 @@ const ControlPanelContainer = ({ className }) => {
     sessionStorage.removeItem("userData");
   };
 
+  const isAdmin = checkAccess([ROLE.ADMIN], roleId);
+
   return (
     <div className={className}>
       {roleId === ROLE.GUEST ? (
@@ -59,12 +62,16 @@ const ControlPanelContainer = ({ className }) => {
           onClick={() => navigate(-1)}
         />
 
-        <Link to="/post">
-          <Icon id="fa-file-text-o" margin="10px 0 0 18px" />
-        </Link>
-        <Link to="/users">
-          <Icon id="fa-users" margin="10px 5px 0 18px" />
-        </Link>
+        {isAdmin && (
+          <>
+            <Link to="/post">
+              <Icon id="fa-file-text-o" margin="10px 0 0 18px" />
+            </Link>
+            <Link to="/users">
+              <Icon id="fa-users" margin="10px 5px 0 18px" />
+            </Link>
+          </>
+        )}
       </RigthAligned>
     </div>
   );

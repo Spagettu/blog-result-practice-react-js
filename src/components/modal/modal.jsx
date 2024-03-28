@@ -16,8 +16,6 @@ export const Modal = () => {
   const onConfirm = useSelector(selectModalOnConfirm);
 
   if (!isOpen) {
-    console.log("isOpen");
-    console.log(onCancel);
     return null;
   }
   return (

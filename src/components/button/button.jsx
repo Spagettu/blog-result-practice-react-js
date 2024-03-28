@@ -16,7 +16,7 @@ export const Button = styled(StyledButton)`
   font-size: 18px;
   width: ${({ width = "100%" }) => width};
   height: 32px;
-  border: 1px solid #000;
+  border: 2px solid #000;
   background-color: ${({ disabled }) => (disabled ? "gray" : " white")};
 
   &:hover {

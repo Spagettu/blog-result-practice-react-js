@@ -3,9 +3,17 @@ import { transformPost } from "../transformer";
 
 const postsUrl = "http://localhost:3005/posts";
 
-export const getPosts = async (page, limit) =>
+export const getPosts = async (searchPhrase, page, limit) =>
   axios
-    .get(postsUrl + "?_page=" + page + "&_limit=" + limit)
+    .get(
+      postsUrl +
+        "?title_like=" +
+        searchPhrase +
+        "&_page=" +
+        page +
+        "&_limit=" +
+        limit
+    )
     .then((response) =>
       Promise.all([response.data, response.headers["x-total-count"]])
     )
@@ -13,4 +21,4 @@ export const getPosts = async (page, limit) =>
       posts: post && post.map(transformPost),
       count,
     }))
-    .catch((catchResponse) => console.log(catchResponse));
+    .catch((catchResponse) => console.error(catchResponse));

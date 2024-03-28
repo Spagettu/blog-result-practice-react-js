@@ -4,9 +4,14 @@ import styled from "styled-components";
 import { Comment } from "./components";
 import { Icon } from "../../../../components/header/components";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUserId, selectUserLogin } from "../../../../selectors";
+import {
+  selectUserId,
+  selectUserLogin,
+  selectUserRole,
+} from "../../../../selectors";
 import { useServerRequest } from "../../../../hooks";
 import { addCommentAsync } from "../../../../actions";
+import { ROLE } from "../../../../constant";
 
 export const Comments = ({ comments, postId }) => {
   const [newComment, setNewComment] = useState("");
@@ -14,6 +19,7 @@ export const Comments = ({ comments, postId }) => {
   const userId = useSelector(selectUserId);
   const requestServer = useServerRequest();
   const login = useSelector(selectUserLogin);
+  const userRole = useSelector(selectUserRole);
 
   const onNewCommentAdd = (currentUserId, selectedPostId, content) => {
     if (content) {
@@ -30,23 +36,26 @@ export const Comments = ({ comments, postId }) => {
     } else return;
   };
 
-  console.log(comments);
+  const isGuest = userRole === ROLE.GUEST;
+
   return (
     <CommentsContainer>
-      <div className="new-comment">
-        <textarea
-          name="comment"
-          value={newComment}
-          placeholder="Комментарий..."
-          onChange={({ target }) => setNewComment(target.value)}
-        />
-        <Icon
-          id="fa-paper-plane-o"
-          margin="0 0 0 10px"
-          size="18px"
-          onClick={() => onNewCommentAdd(userId, postId, newComment)}
-        />
-      </div>
+      {!isGuest && (
+        <div className="new-comment">
+          <textarea
+            name="comment"
+            value={newComment}
+            placeholder="Комментарий..."
+            onChange={({ target }) => setNewComment(target.value)}
+          />
+          <Icon
+            id="fa-paper-plane-o"
+            margin="0 0 0 10px"
+            size="18px"
+            onClick={() => onNewCommentAdd(userId, postId, newComment)}
+          />
+        </div>
+      )}
 
       <div className="comments">
         {comments.map(({ id, author, content, publishedAt }) => (

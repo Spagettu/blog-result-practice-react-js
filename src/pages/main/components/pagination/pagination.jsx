@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Button } from "../../../../components";
 
 export const Pagination = ({ page, setPage, lastPage }) => {
-  console.log(lastPage);
   return (
     <PaginationContainer>
       <Button disabled={page === 1} onClick={() => setPage(1)}>
@@ -24,17 +23,24 @@ export const Pagination = ({ page, setPage, lastPage }) => {
 };
 
 const PaginationContainer = styled.div({
+  position: "absolute",
   display: "flex",
   justifyContent: "center",
-  margin: "10px 0",
-  padding: "0 20px",
+
+  padding: "0 60px 0 20px",
   gap: "10px",
   fontSize: "18px",
+  width: "100%",
 
   "& .current-page": {
     width: "100%",
     height: "32px",
-    textAlign: "center",
-    border: "1px solid black",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+
+    paddingTop: "5px",
+
+    border: "2px solid black",
   },
 });

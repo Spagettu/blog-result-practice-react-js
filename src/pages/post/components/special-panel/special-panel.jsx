@@ -1,22 +1,25 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
 import { Icon } from "../../../../components/header/components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CLOSE_MODAL, openModal, removePostAsync } from "../../../../actions";
 import { useServerRequest } from "../../../../hooks";
 import { useNavigate } from "react-router-dom";
+import { checkAccess } from "../../../../utils";
+import { ROLE } from "../../../../constant";
+import { selectUserRole } from "../../../../selectors";
 
 export const SpecialPanel = ({ id, publishedAt, editButton, ...props }) => {
   const dispatch = useDispatch();
   const requestServer = useServerRequest();
   const navigate = useNavigate();
+  const roleId = useSelector(selectUserRole);
 
   const onPostDelete = (postId) => {
     dispatch(
       openModal({
         text: "Удалить статью?",
         onConfirm: () => {
-          console.log("first");
           dispatch(removePostAsync(requestServer, postId)).then(() =>
             navigate("/")
           );
@@ -27,6 +30,7 @@ export const SpecialPanel = ({ id, publishedAt, editButton, ...props }) => {
       })
     );
   };
+  const isAdmin = checkAccess([ROLE.ADMIN], roleId);
 
   return (
     <SpecialPanelContainer {...{ props }}>
@@ -41,16 +45,18 @@ export const SpecialPanel = ({ id, publishedAt, editButton, ...props }) => {
         )}
         {publishedAt}
       </div>
-      <div className="buttons">
-        {editButton}
-        {publishedAt && (
-          <Icon
-            id="fa-trash-o"
-            margin="0 10px 10px 0"
-            onClick={() => onPostDelete(id)}
-          />
-        )}
-      </div>
+      {isAdmin && (
+        <div className="buttons">
+          {editButton}
+          {publishedAt && (
+            <Icon
+              id="fa-trash-o"
+              margin="0 10px 10px 0"
+              onClick={() => onPostDelete(id)}
+            />
+          )}
+        </div>
+      )}
     </SpecialPanelContainer>
   );
 };

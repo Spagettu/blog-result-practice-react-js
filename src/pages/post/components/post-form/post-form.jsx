@@ -21,7 +21,6 @@ export const PostForm = ({
   const navigate = useNavigate();
 
   useLayoutEffect(() => {
-    console.log("uselayout");
     setNewImageUrl(imageUrl);
     setNewTitle(title);
   }, [imageUrl, title]);
