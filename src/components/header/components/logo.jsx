@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
-import { Icon } from "./icon/icon";
+import { Icon } from "../../icon/icon";
 import { Link } from "react-router-dom";
 
 const LargeText = styled.div({

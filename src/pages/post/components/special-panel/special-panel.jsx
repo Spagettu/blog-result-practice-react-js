@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Icon } from "../../../../components/header/components";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +10,14 @@ import { checkAccess } from "../../../../utils";
 import { ROLE } from "../../../../constant";
 import { selectUserRole } from "../../../../selectors";
 
-export const SpecialPanel = ({ id, publishedAt, editButton, ...props }) => {
+const SpecialPanelContainer = ({
+  className,
+  id,
+  publishedAt,
+  editButton,
+  margin,
+  ...props
+}) => {
   const dispatch = useDispatch();
   const requestServer = useServerRequest();
   const navigate = useNavigate();
@@ -33,7 +41,7 @@ export const SpecialPanel = ({ id, publishedAt, editButton, ...props }) => {
   const isAdmin = checkAccess([ROLE.ADMIN], roleId);
 
   return (
-    <SpecialPanelContainer {...{ props }}>
+    <div className={className} {...props}>
       <div className="published-at">
         {publishedAt && (
           <Icon
@@ -57,33 +65,39 @@ export const SpecialPanel = ({ id, publishedAt, editButton, ...props }) => {
           )}
         </div>
       )}
-    </SpecialPanelContainer>
+    </div>
   );
 };
 
-const SpecialPanelContainer = styled.div({
-  display: "flex",
-  justifyContent: "space-between",
-  margin: ({ margin = "0px" }) => margin,
-  fontSize: "18px",
-  gap: "5px",
+export const SpecialPanel = styled(SpecialPanelContainer)`
+  display: flex;
+  justify-content: space-between;
+  margin: ${({ margin = " 0px" }) => margin};
+  font-size: 18px;
+  gap: 5px;
 
-  "& .buttons": {
-    display: "flex  ",
-  },
+  & .buttons {
+    display: flex;
+  }
 
-  "& i": {
-    position: "relative",
-    top: "-1px",
-  },
+  & i {
+    position: relative;
+    top: -1px;
+  }
 
-  "& img": {
-    float: "left",
-    margin: "0 20px 10px 0",
-  },
+  & img {
+    float: left;
+    margin: 0 20px 10px 0;
+  }
 
-  "& .published-at": {
-    display: "flex",
-    flexDirection: "row",
-  },
-});
+  & .published-at {
+    display: flex;
+    flex-direction: row;
+  }
+`;
+
+SpecialPanel.propTypes = {
+  id: PropTypes.string.isRequired,
+  publishedAt: PropTypes.string.isRequired,
+  editButton: PropTypes.node.isRequired,
+};

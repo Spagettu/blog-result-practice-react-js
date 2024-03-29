@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Button } from "../../../../components";
 
@@ -44,3 +45,9 @@ const PaginationContainer = styled.div({
     border: "2px solid black",
   },
 });
+
+Pagination.propTypes = {
+  page: PropTypes.number.isRequired,
+  setPage: PropTypes.func.isRequired,
+  lastPage: PropTypes.number.isRequired,
+};

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
-import { Icon } from "./icon/icon";
+import { Icon } from "../../icon/icon";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../button/button";
 import { useDispatch, useSelector } from "react-redux";

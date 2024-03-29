@@ -1,14 +1,17 @@
 /* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { H2 } from "../../../../components";
 import { Icon } from "../../../../components/header/components";
 import { SpecialPanel } from "../special-panel/special-panel";
 import { useNavigate } from "react-router-dom";
+import { PROP_TYPE } from "../../../../constant";
 
 export const PostContent = ({
   post: { id, title, imageUrl, content, publishedAt },
 }) => {
   const navigate = useNavigate();
+
   return (
     <PostContentContainer>
       <img src={imageUrl} alt={title} width={400} height={300} />
@@ -40,3 +43,7 @@ const PostContentContainer = styled.div({
     whiteSpace: "pre-line",
   },
 });
+
+PostContent.propTypes = {
+  post: PROP_TYPE.POST.isRequired,
+};

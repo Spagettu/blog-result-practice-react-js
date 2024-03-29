@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const StyledButton = ({ className, children, ...props }) => {
@@ -28,3 +29,8 @@ export const Button = styled(StyledButton)`
     height: 100%;
   }
 `;
+
+Button.propTypes = {
+  children: PropTypes.node.isRequired,
+  width: PropTypes.string,
+};

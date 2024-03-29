@@ -1,14 +1,16 @@
 /* eslint-disable react/prop-types */
+
 import styled from "styled-components";
-import { H2, Input } from "../../../../components";
+import { Input } from "../../../../components";
 import { Icon } from "../../../../components/header/components";
 import { SpecialPanel } from "../special-panel/special-panel";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { sanitizeContent } from "./utils/sanitize-content";
 import { useDispatch } from "react-redux";
-import { RESET_POST_DATA, savePostAsync } from "../../../../actions";
+import { savePostAsync } from "../../../../actions";
 import { useServerRequest } from "../../../../hooks";
 import { useNavigate } from "react-router-dom";
+import { PROP_TYPE } from "../../../../constant";
 
 export const PostForm = ({
   post: { id, title, imageUrl, content, publishedAt },
@@ -83,3 +85,7 @@ const PostFormContainer = styled.div({
     minHeight: "80px",
   },
 });
+
+PostForm.propTypes = {
+  post: PROP_TYPE.POST.isRequired,
+};

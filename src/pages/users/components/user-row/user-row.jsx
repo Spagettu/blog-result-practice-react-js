@@ -1,8 +1,10 @@
 import { Icon } from "../../../../components/header/components";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 import { useState } from "react";
 import { useServerRequest } from "../../../../hooks";
+import { PROP_TYPE } from "../../../../constant";
 
 /* eslint-disable react/prop-types */
 export const UserRow = ({
@@ -83,3 +85,12 @@ const BorderTableRow = styled.div({
     padding: "0 10px",
   },
 });
+
+UserRow.propTypes = {
+  login: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  registeredAt: PropTypes.string.isRequired,
+  roleId: PROP_TYPE.ROLE_ID.isRequired,
+  rolesList: PropTypes.arrayOf(PROP_TYPE.ROLE).isRequired,
+  onUserRemove: PropTypes.func.isRequired,
+};

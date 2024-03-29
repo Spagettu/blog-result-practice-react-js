@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import { Input } from "../../../../components";
 import { Icon } from "../../../../components/header/components";
 
@@ -31,3 +32,8 @@ const SearchContainer = styled.div({
     padding: "10px 25px 10px 5px",
   },
 });
+
+Search.propTypes = {
+  searchPhrase: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};

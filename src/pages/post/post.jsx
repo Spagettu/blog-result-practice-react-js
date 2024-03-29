@@ -5,7 +5,7 @@ import { Comments, PostContent, PostForm } from "./components";
 import { useMatch, useParams } from "react-router-dom";
 import { useServerRequest } from "../../hooks";
 import { RESET_POST_DATA, loadPostAsync } from "../../actions";
-import { selectPost, selectUserRole } from "../../selectors";
+import { selectPost } from "../../selectors";
 import { Error, PrivateContent } from "../../components";
 import { ROLE } from "../../constant";
 

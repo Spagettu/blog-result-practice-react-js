@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
-export const TableRow = ({ children, a }) => {
-  return <TableRowContainer {...{ a }}>{children}</TableRowContainer>;
+export const TableRow = ({ children }) => {
+  return <TableRowContainer>{children}</TableRowContainer>;
 };
 
 const TableRowContainer = styled.div({
@@ -24,3 +25,7 @@ const TableRowContainer = styled.div({
     padding: "0 10px",
   },
 });
+
+TableRow.propTypes = {
+  children: PropTypes.node.isRequired,
+};

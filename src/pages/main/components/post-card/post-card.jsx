@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Icon } from "../../../components/header/components";
+import { Icon } from "../../../../components/header/components";
 import { Link } from "react-router-dom";
 
 export const PostCard = ({
@@ -75,3 +76,11 @@ const PostCardContainer = styled.div({
     padding: "5px",
   },
 });
+
+PostCard.propTypes = {
+  id: PropTypes.string.isRequired,
+  publishedAt: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  commentsCount: PropTypes.number.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+};

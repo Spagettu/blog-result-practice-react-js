@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 import { Icon } from "../../../../../../components/header/components";
@@ -103,3 +104,11 @@ const CommentContainer = styled.div({
     gap: "5px",
   },
 });
+
+Comment.propTypes = {
+  id: PropTypes.number.isRequired,
+  author: PropTypes.string.isRequired,
+  postId: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  publishedAt: PropTypes.string.isRequired,
+};

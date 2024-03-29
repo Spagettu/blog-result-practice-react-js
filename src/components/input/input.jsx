@@ -1,5 +1,6 @@
 /* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
@@ -15,3 +16,7 @@ const InputContainer = styled.input({
   fontSize: "18px",
   border: "1px soid #000",
 });
+
+Input.propTypes = {
+  width: PropTypes.string,
+};

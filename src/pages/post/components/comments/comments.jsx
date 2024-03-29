@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
 import { useState } from "react";
 import styled from "styled-components";
 import { Comment } from "./components";
@@ -11,7 +12,7 @@ import {
 } from "../../../../selectors";
 import { useServerRequest } from "../../../../hooks";
 import { addCommentAsync } from "../../../../actions";
-import { ROLE } from "../../../../constant";
+import { PROP_TYPE, ROLE } from "../../../../constant";
 
 export const Comments = ({ comments, postId }) => {
   const [newComment, setNewComment] = useState("");
@@ -90,3 +91,8 @@ const CommentsContainer = styled.div({
     width: "100%",
   },
 });
+
+Comments.propTypes = {
+  comments: PropTypes.arrayOf(PROP_TYPE.COMMENT).isRequired,
+  postId: PropTypes.string.isRequired,
+};

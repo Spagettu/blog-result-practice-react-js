@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const IconContainer = ({ className, id = "fa-code", inactive, ...props }) => (
@@ -14,3 +15,8 @@ export const Icon = styled(IconContainer)`
     cursor: ${({ inactive = false }) => (inactive ? "default" : "pointer")};
   }
 `;
+
+Icon.propTypes = {
+  id: PropTypes.string.isRequired,
+  inactive: PropTypes.bool,
+};
