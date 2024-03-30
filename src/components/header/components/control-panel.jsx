@@ -64,12 +64,17 @@ const ControlPanelContainer = ({ className }) => {
 
         {isAdmin && (
           <>
-            <Link to="/post">
-              <Icon id="fa-file-text-o" margin="10px 0 0 18px" />
-            </Link>
-            <Link to="/users">
-              <Icon id="fa-users" margin="10px 5px 0 18px" />
-            </Link>
+            <Icon
+              id="fa-file-text-o"
+              margin="10px 0 0 18px"
+              onClick={() => navigate("/post")}
+            />
+
+            <Icon
+              id="fa-users"
+              margin="10px 5px 0 18px"
+              onClick={() => navigate("/users")}
+            />
           </>
         )}
       </RigthAligned>

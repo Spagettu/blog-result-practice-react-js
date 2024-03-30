@@ -12,7 +12,7 @@ export const Users = () => {
   const [rolesList, setRolesList] = useState([]);
   const [users, setUsers] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
-  const [shouldUpdateUsers, setShhouldUpdateUsers] = useState(false);
+  const [shouldUpdateUsers, setShouldUpdateUsers] = useState(false);
 
   const requestServer = useServerRequest();
 
@@ -39,7 +39,7 @@ export const Users = () => {
 
   const onUserRemove = (userId) => {
     requestServer("removeUser", userId).then(() =>
-      setShhouldUpdateUsers((prev) => !prev)
+      setShouldUpdateUsers((prev) => !prev)
     );
   };
 

@@ -8,8 +8,8 @@ export const TableRow = ({ children }) => {
 
 const TableRowContainer = styled.div({
   display: "flex",
-  // border: ({ a = "none" }) => (a ? a : "none"),
   alignItems: "center",
+  justifyContent: "space-evenly",
   width: "570px",
 
   "& .login-column": {
@@ -17,9 +17,11 @@ const TableRowContainer = styled.div({
   },
   "& .registered-at-column": {
     width: "213px",
+    margin: "0 30px 0 0",
   },
   "& .role-column": {
     width: "auto",
+    marginRight: "40px",
   },
   "& div": {
     padding: "0 10px",

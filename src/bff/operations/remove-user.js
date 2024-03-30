@@ -12,7 +12,7 @@ export const removeUser = async (userSession, userId) => {
     };
   }
 
-  deleteUser(userId);
+  await deleteUser(userId);
 
   return {
     error: null,

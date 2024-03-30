@@ -20,7 +20,7 @@ const AppColumn = styled.div({
   width: "1000px",
   minHeight: "100%",
   margin: "0 auto",
-  backgroundColor: "#fff5",
+  backgroundColor: "#fff",
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-between",

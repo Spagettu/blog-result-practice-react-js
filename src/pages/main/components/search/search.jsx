@@ -22,7 +22,7 @@ const SearchContainer = styled.div({
   width: "340px",
   height: "30px",
   margin: "0 auto",
-  border: "1px solid black",
+
   "&  i": {
     position: "absolute",
     marginLeft: "-25px",

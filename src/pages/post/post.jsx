@@ -63,4 +63,3 @@ export const Post = () => {
 const PostContainer = styled.div({
   padding: "0 40px",
 });
-//

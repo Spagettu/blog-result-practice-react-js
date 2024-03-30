@@ -37,7 +37,7 @@ export const PostForm = ({
         title: newTitle,
         content: newContent,
       })
-    ).then(() => navigate("/post/" + id));
+    ).then(({ id }) => navigate("/post/" + id));
   };
 
   const onImageUrlChange = ({ target }) => setNewImageUrl(target.value);
@@ -58,9 +58,11 @@ export const PostForm = ({
         placeholder={"Загаловок..."}
       />
       <SpecialPanel
-        margin={"-20px 0 20px"}
+        margin="20px 0 20px"
         {...{ publishedAt, id }}
-        editButton={<Icon id="fa-floppy-o" margin="0 10px" onClick={onSave} />}
+        editButton={
+          <Icon id="fa-floppy-o" margin="0 10px 0 0" onClick={onSave} />
+        }
       />
       <div
         ref={contentRef}

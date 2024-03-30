@@ -59,7 +59,7 @@ const SpecialPanelContainer = ({
           {publishedAt && (
             <Icon
               id="fa-trash-o"
-              margin="0 10px 10px 0"
+              margin="0 10px 0 0"
               onClick={() => onPostDelete(id)}
             />
           )}

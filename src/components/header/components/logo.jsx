@@ -11,6 +11,7 @@ const LargeText = styled.div({
 const SmallText = styled.div({
   fontSize: "18px",
   fontWeight: "bold",
+  marginTop: "-10px",
 });
 
 export const LogoContainer = ({ className }) => {

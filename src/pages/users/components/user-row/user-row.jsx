@@ -46,14 +46,17 @@ export const UserRow = ({
           </select>
           <Icon
             id="fa-floppy-o"
-            margin="0 0 0 10px"
             disabled={isSaveButtonDisabled}
             onClick={() => onRoleSave(id, selectedtRoleId)}
           />
         </div>
       </BorderTableRow>
 
-      <Icon id="fa-trash-o" onClick={() => onUserRemove(id)} />
+      <Icon
+        id="fa-trash-o"
+        margin="5px 0 0 5px"
+        onClick={() => onUserRemove(id)}
+      />
     </UserRowContainer>
   );
 };
@@ -66,9 +69,11 @@ const UserRowContainer = styled.div({
 
 const BorderTableRow = styled.div({
   display: "flex",
-  border: "1px solid black",
   alignItems: "center",
-  width: "570px",
+  justifyContent: "space-around",
+  border: "1px solid black",
+
+  width: "100%",
 
   "& .login-column": {
     width: "172px",
@@ -80,6 +85,7 @@ const BorderTableRow = styled.div({
     width: "auto",
     display: "flex",
     flexDirection: "row",
+    padding: "3px",
   },
   "& div": {
     padding: "0 10px",

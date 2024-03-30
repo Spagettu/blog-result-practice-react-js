@@ -14,7 +14,7 @@ const InputContainer = styled.input({
   margin: "0 0 10px",
   padding: "10px",
   fontSize: "18px",
-  border: "1px soid #000",
+  border: "1px solid #000",
 });
 
 Input.propTypes = {

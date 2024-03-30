@@ -16,10 +16,9 @@ export const StyledHeader = styled(Header)`
   position: fixed;
   padding: 20px 30px;
   width: 1000px;
-  box-shadow: 0 5px 3px -1px black;
-  background-color: gray;
+  box-shadow: 0 3px 10px -1px black;
+  background-color: #fff;
   display: flex;
   z-index: 1;
-
   justify-content: space-between;
 `;

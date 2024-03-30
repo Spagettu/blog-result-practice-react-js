@@ -42,6 +42,10 @@ const PostContentContainer = styled.div({
   "& .post-text": {
     whiteSpace: "pre-line",
   },
+  "& h2": {
+    display: "flow-root",
+    overflowWrap: "break-word",
+  },
 });
 
 PostContent.propTypes = {

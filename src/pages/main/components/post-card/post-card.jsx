@@ -4,7 +4,8 @@ import styled from "styled-components";
 import { Icon } from "../../../../components/header/components";
 import { Link } from "react-router-dom";
 
-export const PostCard = ({
+export const PostCardContainer = ({
+  className,
   id,
   publishedAt,
   title,
@@ -12,8 +13,8 @@ export const PostCard = ({
   imageUrl,
 }) => {
   return (
-    <Link to={`/post/${id}`}>
-      <PostCardContainer>
+    <div className={className}>
+      <Link to={`/post/${id}`}>
         <img src={imageUrl} alt={title} width={400} height={180} />
         <div className="post-card-footer">
           <h4>{title}</h4>
@@ -38,44 +39,77 @@ export const PostCard = ({
             </div>
           </div>
         </div>
-      </PostCardContainer>
-    </Link>
+      </Link>
+    </div>
   );
 };
 
-const PostCardContainer = styled.div({
-  display: "flex",
-  flexDirection: "column",
+export const PostCard = styled(PostCardContainer)`
+  & a {
+    display: flex;
+    flex-direction: column;
+    height: 290px;
 
-  width: "280px",
-  margin: "20px",
-  border: "2px solid black",
+    width: 280px;
+    margin: 20px;
+    border: 2px solid black;
+  }
+  & a h4 {
+    position: relative;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    text-align: center;
+  }
+  & a h4:hover {
+    color: transparent;
 
-  "& img": {
-    width: "100%",
-    display: "block",
-  },
-  "& .comments-count": {
-    display: "flex",
-    textAlign: "center",
-  },
+    overflow: visible;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+  }
 
-  "& .post-card-info": {
-    display: "flex",
-    justifyContent: "space-between",
-  },
-  "& .published-at": {
-    display: "flex",
-  },
-  "& .post-card-footer": {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-    height: "100%",
-    borderTop: "1px solid black",
-    padding: "5px",
-  },
-});
+  & a h4:hover::after {
+    position: absolute;
+    padding-left: 2px;
+    width: 100%;
+    top: 0;
+    left: -2px;
+    background-color: white;
+    overflow-wrap: break-word;
+    text-align: center;
+    color: black;
+    content: ${({ title }) => `"${title}"`};
+    opacity: 0.9;
+    z-index: 20;
+  }
+  & img {
+    width: 100%;
+    display: block;
+  }
+  & .comments-count {
+    display: flex;
+    text-align: center;
+  }
+
+  & .post-card-info {
+    display: flex;
+    justify-content: space-between;
+  }
+  & .published-at {
+    display: flex;
+  }
+  & .post-card-footer {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    border-top: 1px solid black;
+    padding: 5px;
+  }
+`;
 
 PostCard.propTypes = {
   id: PropTypes.string.isRequired,
